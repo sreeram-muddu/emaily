@@ -12,7 +12,7 @@ module.exports = app => {
 
     app.get('/api/current_user', (req, res)=> { 
         //passport attaches the user object to the req 
-       res.send(req.session)
+       res.send(req.user)
 
     })
 
