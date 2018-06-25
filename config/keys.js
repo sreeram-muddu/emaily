@@ -1,6 +1,5 @@
 // keys.js figure out which environment and return 
 
-console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'production') {
     module.exports = require('./prod')
 
