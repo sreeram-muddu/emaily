@@ -3,7 +3,8 @@ const { Schema } = mongoose
 
 //defines the kind of data that we are planning to store
 const userSchema = new Schema({
-    googleId: String
+    facebookId: String,
+    credits: { type: Number, default: 0}
 })
 
 //creation of the collection if it doesn't exist

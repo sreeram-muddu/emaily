@@ -5,9 +5,9 @@ module.exports = app => {
         scope: ['profile', 'email'] 
       }))
       
-    app.get('/auth/google/callback',passport.authenticate('google'), (req,res) => {
-        console.log('should be finally sending back the response to the user')
-        res.send({"hey" : "callback URI"})
+    app.get('/auth/google/callback',passport.authenticate('google', {   successRedirect: '/surveys',
+    failureRedirect: '/auth/google/failure'}), (req,res) => {
+        res.redirect('/surveys')
     })
 
     app.get('/api/current_user', (req, res)=> { 
@@ -19,7 +19,14 @@ module.exports = app => {
     app.get('/api/logout', (req,res) => {
         //we can make use of logout function on the request object attached by the passport
         req.logout()
-        res.send(req.user)
+        res.redirect('/')
 
     })
+
+    app.get('/auth/facebook', passport.authenticate('facebook'))
+
+    app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/surveys',
+                                      failureRedirect: '/' }));
+
 }
