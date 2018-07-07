@@ -36,9 +36,10 @@ require('./routes/authRoutes')(app)
 
 
 require('./routes/billingRoutes')(app)
+  
 
 
-if(process.env.NODE_ENV === 'production ') {
+if(process.env.NODE_ENV === 'production') {
     // express will serve production assets like main.js file and .css file
   app.use(express.static('client/build'))
     // express will serve up the index.html file if it doesn't recognize the route
