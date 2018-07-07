@@ -40,7 +40,8 @@ passport.use(new GoogleStrategy({
   passport.use(new FacebookStrategy({
     clientID: keys.facebookClientId,
     clientSecret: keys.facebookClientSecret,
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: "/auth/facebook/callback",
+    proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
     const existingUser = await User.findOne({ facebookId: profile.id })
