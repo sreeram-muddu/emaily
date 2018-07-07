@@ -8,6 +8,8 @@ const keys = require('../config/keys')
 
 const User = require('../models/User')
 
+console.log(keys)
+
 passport.serializeUser((user, done)=> {
     done(null, user.id )
 })
