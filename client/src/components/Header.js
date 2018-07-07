@@ -10,7 +10,7 @@ class Header extends Component {
               return 'still deciding'
 
             case false:
-              return <li><a href="/auth/facebook"> Login With Facebook </a> </li>
+              return <li><a href="/auth/google"> Login With Google </a> </li>
 
             default:
             return [

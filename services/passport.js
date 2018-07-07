@@ -1,14 +1,11 @@
 
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const FacebookStrategy = require('passport-facebook').Strategy
 const mongoose = require('mongoose')
 
 const keys = require('../config/keys')
 
 const User = require('../models/User')
-
-console.log(keys)
 
 passport.serializeUser((user, done)=> {
     done(null, user.id )
@@ -39,19 +36,3 @@ passport.use(new GoogleStrategy({
   }
   ))
 
-  passport.use(new FacebookStrategy({
-    clientID: keys.facebookClientId,
-    clientSecret: keys.facebookClientSecret,
-    callbackURL: "/auth/facebook/callback",
-    proxy: true
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    const existingUser = await User.findOne({ facebookId: profile.id })
-    if(!existingUser) {
-      const newUser =  await new User({ facebookId: profile.id }).save()
-      return done(null,  newUser)
-    } 
-    done(null,  existingUser)
-
-}
-))
