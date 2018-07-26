@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from 'redux'
 import App from './components/App'
 import reducers from './reducers'
 import reduxThunk from 'redux-thunk'
+import axios from 'axios'
+window.axios = axios
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
@@ -16,4 +18,3 @@ ReactDom.render(
   document.querySelector('#root')
 )
 
-console.log(process.env.REACT_APP_STRIPE_KEY)
